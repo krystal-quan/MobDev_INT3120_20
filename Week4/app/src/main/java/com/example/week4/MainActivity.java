@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
-    String[] mobileArray = {"Android", "Apple", "IOS", "Bla"};
+    String[] mobileArray = {"Android", "Apple", "IOS", "Bla", "PopOS", "Ubuntu", "Linux", "Still Linux"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

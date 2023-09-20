@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SpinnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView selection;
-    String[] items = {"Android", "Apple", "IOS", "Bla"};
+    String[] items = {"Android", "Apple", "IOS", "Bla", "PopOS", "Ubuntu", "Linux", "Still Linux"};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

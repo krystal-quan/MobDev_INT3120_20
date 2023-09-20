@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/widget28"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+
+    <TextClock
+        android:id="@+id/textclock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="200px"
+        android:background="#00ff00"
+        android:textAlignment="center"
+        android:layout_below="@+id/analog"
+        android:layout_centerHorizontal="true"
+        >
+
+    </TextClock>
+    <AnalogClock
+        android:id="@+id/analog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:textAlignment="center">
+
+
+    </AnalogClock>
+
+</LinearLayout>

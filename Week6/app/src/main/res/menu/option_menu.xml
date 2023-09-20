@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item1"
+        android:title="This is item 1"
+        android:orderInCategory="100"
+        app:showAsAction="collapseActionView"
+        />
+    <item
+        android:id="@+id/item2"
+        android:title="This is item 2"
+        android:orderInCategory="120"
+        app:showAsAction="collapseActionView"
+        >
+
+        <menu>
+            <item android:id="@+id/item21"
+                android:title="This is item 2.1"
+                android:orderInCategory="1"
+                app:showAsAction="collapseActionView"
+                />
+            <item android:id="@+id/item22"
+                android:title="This is item 2.2"
+                android:orderInCategory="2"
+                app:showAsAction="collapseActionView"
+                />
+        </menu>
+    </item>
+
+    <group
+        android:id="@+id/group1"
+        android:menuCategory="container"
+        android:orderInCategory="130"
+        >
+        <item
+            android:id="@+id/itemg1"
+            android:title="This is GItem 1"
+            android:orderInCategory="1"
+            app:showAsAction="collapseActionView"
+            />
+        <item
+            android:id="@+id/itemg2"
+            android:title="This is GItem 2"
+            android:orderInCategory="2"
+            app:showAsAction="collapseActionView"
+            />
+    </group>
+</menu>
