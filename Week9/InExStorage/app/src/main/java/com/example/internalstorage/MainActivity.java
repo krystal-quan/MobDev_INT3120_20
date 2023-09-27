@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,7 +17,9 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     public static final String INTERNAL_PATH = Environment.getDataDirectory().getPath() + "/data/com.example.internalstorage/";
-    public static final String EXTERNAL_PATH = Environment.getExternalStorageDirectory().getPath() + "/Android/data/com.example.internalstorage/";
+
+
+    public static String EXTERNAL_PATH = Environment.getExternalStorageDirectory().getPath() + "/ExStorage/";
 
     public static final String PROFILE_FILE = "profile.txt";
     EditText edtName, edtFullName;
@@ -54,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveData() {
         try {
-            String path = INTERNAL_PATH + PROFILE_FILE;
-//            String path = EXTERNAL_PATH + PROFILE_FILE;
+//            createExternalFile();
+//            String path = INTERNAL_PATH + PROFILE_FILE;
+            String path = EXTERNAL_PATH + PROFILE_FILE;
             File file = new File(path);
             if (!file.exists()) {
                 file.createNewFile();
@@ -98,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String getData() {
         try {
-            String path = INTERNAL_PATH + PROFILE_FILE;
-//            String path = EXTERNAL_PATH + PROFILE_FILE;
+//            String path = INTERNAL_PATH + PROFILE_FILE;
+            String path = EXTERNAL_PATH + PROFILE_FILE;
             File file = new File(path);
             if (!file.exists()) {
                 Toast.makeText(this, "No Data saved yet", Toast.LENGTH_LONG).show();
@@ -119,5 +120,17 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private void createExternalFile() {
+        File file1 = new File(EXTERNAL_PATH);
+        try {
+            if (!file1.exists()) {
+                file1.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        EXTERNAL_PATH += "/";
     }
 }

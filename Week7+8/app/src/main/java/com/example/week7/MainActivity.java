@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     public void sendBroadcast1() {
         Intent intent = new Intent("com.example.BROADCAST_EXAMPLE");
         intent.putExtra("message", "This is a broadcast event.");
+        intent.setAction("com.example.BROADCAST_EXAMPLE");
         sendBroadcast(intent);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
