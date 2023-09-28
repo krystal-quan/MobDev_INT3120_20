@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -15,11 +17,19 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     Button btnSend, btnBroadcast;
-    TextView tvFb;
+    TextView tvFb, tvBroadcast;
 
     EditText edtName;
 
-    NewBroadcastReceiver receiver;
+//    BroadcastReceiver receiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            String text = intent.getStringExtra("message");
+//            tvBroadcast.setText(text);
+//        }
+//    };
+
+    NewBroadcastReceiver receiver = new NewBroadcastReceiver();
     int MY_REQUEST_CODE = 1000001;
 
     @Override
@@ -29,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         edtName = (EditText) findViewById(R.id.editTextText);
         tvFb = (TextView) findViewById(R.id.tvFb);
+        tvBroadcast = (TextView) findViewById(R.id.tvBroadcast);
 
         btnSend = (Button) findViewById(R.id.btnSend);
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 sendBroadcast1();
             }
         });
-        receiver = new NewBroadcastReceiver();
     }
 
     @Override
