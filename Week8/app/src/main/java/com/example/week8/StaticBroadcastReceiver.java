@@ -15,10 +15,10 @@ public class StaticBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             if (isNetworkAvailable(context)) {
-                Toast.makeText(context, "Internet Connected", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Internet Connected", Toast.LENGTH_SHORT).show();
             }
             else {
-                Toast.makeText(context, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Internet Disconnected", Toast.LENGTH_SHORT).show();
             }
         }
     }
