@@ -10,10 +10,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button btnSend, btnBroadcast;
@@ -21,15 +23,16 @@ public class MainActivity extends AppCompatActivity {
 
     EditText edtName;
 
-//    BroadcastReceiver receiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            String text = intent.getStringExtra("message");
-//            tvBroadcast.setText(text);
-//        }
-//    };
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String text = intent.getStringExtra("message");
+            doToast("Broadcast Work!!!");
+            tvBroadcast.setText(text);
+        }
+    };
 
-    NewBroadcastReceiver receiver = new NewBroadcastReceiver();
+//    NewBroadcastReceiver receiver = new NewBroadcastReceiver();
     int MY_REQUEST_CODE = 1000001;
 
     @Override
@@ -56,13 +59,16 @@ public class MainActivity extends AppCompatActivity {
                 sendBroadcast1();
             }
         });
+
+        IntentFilter intentFilter = new IntentFilter("com.example.BROADCAST_EXAMPLE");
+        registerReceiver(receiver, intentFilter);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        IntentFilter intentFilter = new IntentFilter("com.example.BROADCAST_EXAMPLE");
-        registerReceiver(receiver, intentFilter);
+//        IntentFilter intentFilter = new IntentFilter("com.example.BROADCAST_EXAMPLE");
+//        registerReceiver(receiver, intentFilter);
     }
 
     public void sendMessage() {
@@ -81,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendBroadcast1() {
         Intent intent = new Intent("com.example.BROADCAST_EXAMPLE");
-        intent.putExtra("message", "This is a broadcast event.");
+        String temp = edtName.getText().toString();
+        intent.putExtra("message", temp);
         intent.setAction("com.example.BROADCAST_EXAMPLE");
         sendBroadcast(intent);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
@@ -98,6 +105,17 @@ public class MainActivity extends AppCompatActivity {
         else {
             tvFb.setText("Something Wrong happened.");
         }
+    }
+
+    private void doToast(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(receiver);
+        Log.d("K.Quan", "Broadcast Unregistered");
     }
 
     @Override

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public static String EXTERNAL_PATH = Environment.getExternalStorageDirectory().getPath() + "/ExStorage/";
 
     public static final String PROFILE_FILE = "profile.txt";
-    EditText edtName, edtFullName;
+    EditText edtName, edtFullName, edtFilename;
     TextView tvName, tvFullname;
 
     Button btnSubmit, btnGetData;
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         edtName = (EditText) findViewById(R.id.edtUsername);
         edtFullName = (EditText) findViewById(R.id.edtFullname);
+        edtFilename = (EditText) findViewById(R.id.edtFilename);
         tvName = (TextView) findViewById(R.id.tvName);
         tvFullname = (TextView) findViewById(R.id.tvFullname);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
@@ -100,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
     private String getData() {
         try {
 //            String path = INTERNAL_PATH + PROFILE_FILE;
-            String path = EXTERNAL_PATH + PROFILE_FILE;
+            String fileName = edtFilename.getText().toString();
+            String path = EXTERNAL_PATH + fileName + ".txt";
             File file = new File(path);
             if (!file.exists()) {
                 Toast.makeText(this, "No Data saved yet", Toast.LENGTH_LONG).show();
